@@ -7,84 +7,92 @@
 <meta name="description" content="清水博客内容转载站">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://logic-wizard.github.io//favicon.ico?v=1594824353480">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="shortcut icon" href="https://logic-wizard.github.io//favicon.ico?v=1594824490286">
 <link rel="stylesheet" href="https://logic-wizard.github.io//styles/main.css">
 
 
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
+
   </head>
   <body>
-  
-    <nav class="navbar border fixed split-nav">
-  <div class="nav-brand">
-    <h3><a href="https://logic-wizard.github.io/">清水博客内容转载站</a></h3>
-  </div>
-  <div class="collapsible">
-    <input id="collapsible1" type="checkbox" name="collapsible1">
-    <button>
-      <label for="collapsible1">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-      </label>
-    </button>
-    <div class="collapsible-body">
-      <ul class="inline">
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://logic-wizard.github.io/">
+        <img src="https://logic-wizard.github.io//images/avatar.png?v=1594824490286" class="site-logo">
+        <h1 class="site-title">清水博客内容转载站</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
         
-          <li>
-            
-              <a href="/" class="menu">
-                首页
-              </a>
-            
-          </li>
+          <a href="/" class="site-nav">
+            首页
+          </a>
         
-          <li>
-            
-              <a href="/archives" class="menu">
-                归档
-              </a>
-            
-          </li>
+      
         
-          <li>
-            
-              <a href="/tags" class="menu">
-                标签
-              </a>
-            
-          </li>
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
         
-          <li>
-            
-              <a href="/post/about" class="menu">
-                关于
-              </a>
-            
-          </li>
+      
         
-      </ul>
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
     </div>
   </div>
-</nav>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      清水博客内容转载站
+    </div>
+    <div class="site-footer">
+      本站为备份站，仅作存档，永不更新！！！
+    </div>
+  </div>
+</div>
 
-    <div id="top" class="row site">
-      <div class="sm-12 md-8 col">
-        <div class="paper">
-          <article class="article">
-            <h1>【转载】修改8110的开机第一屏</h1>
-            <p class="article-meta">
-              2020-07-15
-              
-            </p>
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">【转载】修改8110的开机第一屏</h2>
+            <div class="post-date">2020-07-15</div>
             
             <div class="post-content">
               <h2 id="以下内容转载自insorasky">以下内容转载自<a href="https://www.sorasky.in/">inSoraSky</a></h2>
@@ -105,132 +113,15 @@
 </ul>
 
             </div>
-          </article>
+            
+            
+
+            
+
+          </div>
+
         </div>
-        <div class="paper" data-aos="fade-in">
-          
-        </div>
-        
       </div>
-
-      <div class="sm-12 md-4 col sidebar">
-  <div class="paper info-container">
-    <img src="https://logic-wizard.github.io//images/avatar.png?v=1594824353480" class="no-responsive avatar">
-    <div class="text-muted">清水博客内容转载站</div>
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-  </div>
-  <div class="paper">
-    <div class="sidebar-title">
-      最新文章
-    </div>
-    <div class="row">
-      <ul>
-        
-          
-            <li>
-              <a href="https://logic-wizard.github.io//post/k18">【转载】【2020年7月】Nokia 8110 4G GerdaOS刷机教程</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://logic-wizard.github.io//post/k17">【转载】【清水博客汉化】OmniSD</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://logic-wizard.github.io//post/k16">【转载】【清水博客汉化】reader by wolfff78</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://logic-wizard.github.io//post/k15">【转载】【清水博客汉化】Wallace Toolbox——折腾kaiOS手机的全能APP</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://logic-wizard.github.io//post/k14">【转载】【软件分享】KaiBoy汉化版</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://logic-wizard.github.io//post/k13">【转载】【转载】把掰直的香蕉掰回去——8110恢复原厂系统教程</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://logic-wizard.github.io//post/k12">【转载】8110 V16系统root方法</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://logic-wizard.github.io//post/k11">【转载】8110恢复官方系统</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://logic-wizard.github.io//post/k10">【转载】kaiOS相关的网站推荐</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://logic-wizard.github.io//post/k9">【转载】Nokia 8110 4G 拨号盘神秘代码</a>
-            </li>
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      </ul>
-    </div>
-  </div>
-  <div class="paper">
-    <div class="sidebar-title">
-      标签列表
-    </div>
-    <div class="row">
-      
-    </div>
-  </div>
-  <div class="paper">
-    本站为备份站，仅作存档，永不更新！！！
-  </div>
-</div>
-
-
     </div>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -240,6 +131,13 @@
 AOS.init();
 
 hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
 
 </script>
 
