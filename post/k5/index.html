@@ -1,265 +1,237 @@
-<!-- 头部 -->
+<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" >
 
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="keywords" content="">
-<meta name="description" content="">
-<title>清水博客内容转载站</title>
-<meta name="description" content="清水博客内容转载站" />
+<title>【转载】如何让8110的终端CLI程序解析域名 | 清水博客内容转载站</title>
+<meta name="description" content="清水博客内容转载站">
 
-<link rel="shortcut icon" href="https://logic-wizard.github.io//favicon.ico">
-<meta name='robots' content='noindex,nofollow'>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://logic-wizard.github.io//favicon.ico?v=1594824008945">
 
-<script type='text/javascript' src='https://logic-wizard.github.io//media/js/jquery-1.12.4-wp.js'></script>
-<script type='text/javascript' src='https://logic-wizard.github.io//media/js/jquery-migrate.min-1.4.1.js'></script><!-- 应用迁移辅助插件 -->
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-<link rel="stylesheet" href="https://logic-wizard.github.io//media/css/style.css">
-<link rel="stylesheet" href="https://logic-wizard.github.io//media/css/main.css">
-<link rel="stylesheet" href="https://logic-wizard.github.io//media/css/monokai_sublime.min.css">
-<!-- main.less -->
-<link rel="stylesheet"  href="https://logic-wizard.github.io//styles/main.css">
-<!-- 目录索引 start-->
-<link href="https://logic-wizard.github.io//media/plugins/tocify/toc.css" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://logic-wizard.github.io//styles/main.css">
 
 
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
 
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
-<link rel="stylesheet" href="https://logic-wizard.github.io//media/css/plugins/fancybox.min.css">
-<link rel="stylesheet"
-      class="layout-css"
-      id="layout-css"
-      href="
-
-">
-
-<link rel="stylesheet"
-      class="layout-blur-css"
-      id="layout-blur-css"
-      href="
-">
- 
-
-<link rel="stylesheet" class="rtl-css" id="rtl-css" href="">
-
-<style>
-body[class*=background-img-] {
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: top right;
-      background-attachment: fixed
-}
-
-body[class*=background-img-] .pcoded-navbar.theme-horizontal~.pcoded-header[class*=header-] {
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: top right;
-      background-attachment: fixed
-}
-
-body.background-blue-img-1 {
-      background-image: url();
-      background-attachment: fixed;
-      background-repeat:no-repeat;
-      background-size:100% 100%;
-      -moz-background-size:100% 100%;
-}
-
-body.background-blue-img-1 .pcoded-navbar.theme-horizontal~.pcoded-header[class*=header-] {
-      background-image: url()
-      background-attachment: fixed;
-      background-repeat:no-repeat;
-      background-size:100% 100%;
-      -moz-background-size:100% 100%;
-}
-</style>
-</head>
-	
-<body class="
-      background-blue
-">
-
-<div id="body" class="
-            container box-layout
-">
-
-      <!-- [ 预装机 ] start -->
-      <div class="loader-bg" style="display: none">
-            <div class="loader-track">
-                  <div class="loader-fill"></div>
-            </div>
-      </div>
-      <!-- [ 预装机 ] End -->
-<!--头部 over-->
-
-        <!-- 侧导航 -->
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://logic-wizard.github.io/">清水博客内容转载站</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
         
-<nav class="
-pcoded-navbar menu-light
- ">
-  <div class="navbar-wrapper  ">
-    <div class="navbar-content scroll-div ">
-
-
-
-      <ul class="nav pcoded-inner-navbar ">
-        <li class="nav-item pcoded-menu-caption">
-          <label>导航</label>
-        </li>
-      </ul>
-      <!-- 导航 -->
-      <ul class="nav pcoded-inner-navbar">
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
         
-
-                  
-                  
-                  
-                  <li>
-                    
-                    <a href="/" target="_self">
-                      <span class="pcoded-micon"><i class="feather icon-home"></i></span>首页
-                    </a>
-                  </li>
-                  
-                  
-                  
-                  <li>
-                    
-                    <a href="/archives/" target="_self">
-                      <span class="pcoded-micon"><i class="feather icon-list"></i></span>归档
-                    </a>
-                  </li>
-                  
-                  
-                  
-                  <li>
-                    
-                    <a href="/tags/" target="_self">
-                      <span class="pcoded-micon"><i class="feather icon-tag"></i></span>标签
-                    </a>
-                  </li>
-                  
-                  
-                  
-                  <li>
-                    
-                    <a href="/post/about/" target="_self">
-                      <span class="pcoded-micon"><i class="feather icon-user"></i></span>关于
-                    </a>
-                  </li>
-                  
-
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
       </ul>
-
-
-      
-      <ul class="nav pcoded-inner-navbar ">
-        <li class="nav-item pcoded-menu-caption">
-          <label>组成</label>
-        </li>
-      </ul>
-      <!-- 把标签做成分类 -->
-      <ul class="nav pcoded-inner-navbar ">
-        <li>
-          <a href="javascript:void(0)" no-pjax="" class="nav-link pcoded-submenu-click">
-            <span class="pcoded-micon"><i class="feather icon-align-justify"></i></span><span
-              class="pcoded-mtext">标签</span></a>
-          <ul class="pcoded-submenu" data="off" style="display: none;">
-
-            <li>
-              <a href="https://803344.xyz/tag/image/" title="相册">
-                <span class="pcoded-micon"><i class="feather icon-activity"></i></span><span>相册</span></a>
-            </li>
-
-            <li>
-              <a href="https://803344.xyz/tag/HI1Rma5AT/" title="art">
-                <span class="pcoded-micon"><i class="feather icon-activity"></i></span><span>art</span></a>
-            </li>
-
-            <li>
-              <a href="https://803344.xyz/tag/edJe0WFB5/" title="Gridea">
-                <span class="pcoded-micon"><i class="feather icon-activity"></i></span><span>Gridea</span></a>
-            </li>
-
-          </ul>
-        </li>
-      </ul>
-      <!-- 把标签做成分类 结束-->
     </div>
   </div>
 </nav>
-        <!--侧导航 over-->
 
-        <!-- 顶导航 -->
-        <!-- [ 顶部/标头 ]  start -->
-<header class="navbar pcoded-header navbar-expand-lg navbar-light header-blue ">
-    <div class="m-header">
-        <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
-        <a href="https://logic-wizard.github.io/" class="b-brand">
-            <!-- ========   change your logo hear   ============ -->
-                        <img src="https://logic-wizard.github.io//media/images/logo.png" alt="" class="logo" width="68" height="auto">
-                    </a>
-        <a href="#!" class="mob-toggler">
-            <i class="feather icon-more-vertical"></i>
-        </a>
-    </div>
-    <div class="collapse navbar-collapse">
-        <!-- <ul id="menu-gu%e8%87%aa%e7%94%a8-1" class="navbar-nav top-navbar-nav"><li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-132"><a href="" aria-current="page">首页</a></li>
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-133"><a href="sample-page/index.html">示例页面</a></li>
-</ul> -->
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>【转载】如何让8110的终端CLI程序解析域名</h1>
+            <p class="article-meta">
+              2020-07-15
+              
+            </p>
+            
+            <div class="post-content">
+              <h2 id="以下内容转载自insorasky">以下内容转载自<a href="https://www.sorasky.in/">inSoraSky</a></h2>
+<p>有时候我们需要借助CLI程序来让我们的香蕉机实现更高级的功能（比如发推等），然鹅使用的时候却发现无法解析域名。这是因为8110的Linux内核没有设置DNS。设置DNS（这不会修改gecko使用的DNS，gecko依然使用运营商的DNS）方法如下：
+1、如果手机没有root，请先<a href="http://www.heppy.wang/admin/write-post.php?cid=47">点此</a>root你的手机。
+2、创建resolv.conf（建议使用notepad++等非记事本的文本编辑器）
+3、编辑resolv.conf：（我是习惯阿里DNS啦，各位有自己的喜好的话可以自己修改）</p>
+<pre><code>nameserver 223.5.5.5
+nameserver 223.6.6.6
+</code></pre>
+<p>4、把resolv.conf复制到手机的 /system/etc/ 下。</p>
+<p><img src="http://www.heppy.wang/usr/uploads/2020/01/1214043166.jpg" alt="b90e7bec54e736d16f148aa995504fc2d562690f-565x1024.jpg"></p>
 
-        <ul class="navbar-nav ml-auto" style="
-    height: 0px;
-">
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://logic-wizard.github.io//post/k4">
+                <h3 class="post-title">
+                  【转载】如何让香蕉开车开的更快——Nokia 8110 4G 提速小技巧
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+      </div>
 
-
-            <li class="nav-item m-r-10"><a href="javascript:void(0)" class="nav-switch-dark-mode text-lg" title="关灯">
-                <i class="feather icon-moon"></i></a>
-            </li>
-            <li class="nav-item">
-                <a href="#!" class="pop-search text-lg"><i class="feather icon-search"></i></a>
-                <form class="search-bar" id="searchform" method="get" role="search" action="http://127.0.0.1">
-                    <input type="text" name="s" class="form-control border-0 shadow-none" placeholder="请输入关键词搜索">
-                    <button type="button" class="close" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </form>
-            </li>
-        </ul>
-
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://logic-wizard.github.io//images/avatar.png?v=1594824008945" class="no-responsive avatar">
+    <div class="text-muted">清水博客内容转载站</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
       
     </div>
-
-
-</header>
-<!-- [ 顶部/标头 ] end -->
-        <!--顶导航 over-->
-
-        <!-- 内容 -->
-        <!-- [ post主要内容 ] start -->
-<section class="pcoded-main-container" id="content">
-<div class="pcoded-content">
-	<div class="row">
-<!-- 调用标签 -->
-
-
-
-
-		
-	</div>
-</div>
-<!-- [ 版权 ] start -->
-			<!-- 版权 -->
-<footer class="footer card py-3 py-lg-3">
-<div class="container">
-	<div class="footer-copyright text-xs px-3">
-		<div class="float-left">
-			Copyright © 2020 
-			
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://logic-wizard.github.io//post/k18">【转载】【2020年7月】Nokia 8110 4G GerdaOS刷机教程</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://logic-wizard.github.io//post/k17">【转载】【清水博客汉化】OmniSD</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://logic-wizard.github.io//post/k16">【转载】【清水博客汉化】reader by wolfff78</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://logic-wizard.github.io//post/k15">【转载】【清水博客汉化】Wallace Toolbox——折腾kaiOS手机的全能APP</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://logic-wizard.github.io//post/k14">【转载】【软件分享】KaiBoy汉化版</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://logic-wizard.github.io//post/k13">【转载】【转载】把掰直的香蕉掰回去——8110恢复原厂系统教程</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://logic-wizard.github.io//post/k12">【转载】8110 V16系统root方法</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://logic-wizard.github.io//post/k11">【转载】8110恢复官方系统</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://logic-wizard.github.io//post/k10">【转载】kaiOS相关的网站推荐</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://logic-wizard.github.io//post/k9">【转载】Nokia 8110 4G 拨号盘神秘代码</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+    </div>
+  </div>
+  <div class="paper">
+    
 
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=425137440&auto=1&height=66"></iframe>
@@ -300,114 +272,24 @@ show_date_time()
 </html>
 
 
-		</div>
-		<div class="float-right d-none">
-			  Designed by <a href="//803344.xyz/" title="Art" target="_blank">Art</a>
-			移植 <a href="//www.hankin.cn/" title="" rel="home">hankin主题</a>
-			</div>
-	</div>
-</div>
-</footer>
-<!-- [ 版权 ] end -->
-</section>
-<!-- [ 主要内容 ] end -->
-        <!--内容 over-->
-
-    <!-- 尾部 -->
-    </div>
-<!--定义全局变量--> 
-<script type="text/javascript">
-window.THEME_URL = 'https://logic-wizard.github.io/'; //获取域名地址 
-window.ENCODE_URI_COMPONENT_TITLE = document.title; 
-window.ENCODE_URI_COMPONENT_LINK = this.location.href; 
-window.ENCODE_URI_COMPONENT_IMAGE = 'https://logic-wizard.github.io//media/images/thumb.png';//分享出去的海波
-window.IS_PAGE_SINGLE = 0;
-window.IS_SLIDER = 1;
-</script>
-
-
-
-
-<script type="text/javascript" src="https://logic-wizard.github.io//media/js/plugins/jquery.js"></script>
-<script type="text/javascript" src="https://logic-wizard.github.io//media/js/plugins/jquery.cookie.js"></script>
-<script type="text/javascript" src="https://logic-wizard.github.io//media/js/plugins/popper.min.js"></script>
-<script type="text/javascript" src="https://logic-wizard.github.io//media/js/plugins/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://logic-wizard.github.io//media/js/plugins/highlight/highlight.min.js"></script>
-<script type="text/javascript" src="https://logic-wizard.github.io//media/js/plugins/pjax.js"></script>
-
-
-
-<!-- 分享插件 start-->
-<div id="cz-leftside-share"></div>
-<script type="text/javascript" src="https://logic-wizard.github.io//media/js/plugins/jquery.share.min.js"></script>
-<!-- 分享插件 end-->
-<!-- 灯箱 -->
-  <script type="text/javascript" src="https://logic-wizard.github.io//media/js/plugins/fancybox.min.js"></script>
-  
-
-
-<!-- 文章目录 -->
-<script src="https://logic-wizard.github.io//media/plugins/tocify/toc.js"></script>
-<!-- 自定义 -->
-<script type="text/javascript" src="https://logic-wizard.github.io//media/js/main.js"></script>
-
-
-
-
-
-
-
-
-<!--网站统计代码 start-->
-<!--网站统计代码 end-->
-<!-- [ modal ] start -->
- <div class="modal fade bd-example-modal-lg" id="gratuityModal" tabindex="-1" role="dialog" aria-labelledby="gratuityModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="gratuityModalLabel">赞赏作者</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body p-0">
-        <div class="qr_pay">
-                        <img src="https://logic-wizard.github.io//media/images/zfb.jpg" class="qr_pay_alipay" style="display: block;">
-                        <img src="https://logic-wizard.github.io//media/images/wx.jpg" class="qr_pay_wechatpay" style="display: none;">
-                   </div>
-      </div>
-      <div class="modal-footer">
-        <p class="text-center text-muted">请通过微信、支付宝 APP 扫一扫 </p>
-        <p class="text-center text-muted">感谢您对作者的支持！</p>
-        <p class="text-center text-muted"> 
-          <a class="btn btn-primary btn-like btn-link-like2" href="javascript:void(0);" id="qr_pay_alipay_click">&nbsp;支付宝</a>
-          <a class="btn btn-success mt-3 mb-3" href="javascript:void(0);" id="qr_pay_wechatpay_click">微信支付</a>
-        </p>
-      </div>
-    </div>
   </div>
 </div>
-<script type="text/javascript">
-  $("#qr_pay_alipay_click").click(function(){
-        $(".qr_pay_wechatpay").hide();
-      $(".qr_pay_alipay").css({"display":"block"});
-  });
-  $("#qr_pay_wechatpay_click").click(function(){
-      $(".qr_pay_wechatpay").css({"display":"block"});
-      $(".qr_pay_alipay").hide();
-  });
-
-    // 重载函数
-    function hljsLoino() {
 
 
-  }
-  hljsLoino();
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
 </script>
 
 
-<!-- [ modal ] end -->
-</body>
 
+
+  </body>
 </html>
-    <!--尾部 over-->
