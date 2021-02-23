@@ -1,189 +1,345 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://qqfloatingice.github.io/</id>
-    <title>QQ floating ice</title>
-    <updated>2020-04-03T10:24:08.229Z</updated>
+    <id>https://kaios.qqfloatingice.top</id>
+    <title>清水博客内容转载站</title>
+    <updated>2021-02-23T08:49:08.765Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://qqfloatingice.github.io/"/>
-    <link rel="self" href="https://qqfloatingice.github.io/atom.xml"/>
-    <subtitle>A personal blog for QQ floating ice</subtitle>
-    <logo>https://qqfloatingice.github.io/images/avatar.png</logo>
-    <icon>https://qqfloatingice.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, QQ floating ice</rights>
+    <link rel="alternate" href="https://kaios.qqfloatingice.top"/>
+    <link rel="self" href="https://kaios.qqfloatingice.top/atom.xml"/>
+    <subtitle>清水博客内容转载站</subtitle>
+    <logo>https://kaios.qqfloatingice.top/images/avatar.png</logo>
+    <icon>https://kaios.qqfloatingice.top/favicon.ico</icon>
+    <rights>All rights reserved 2021, 清水博客内容转载站</rights>
     <entry>
-        <title type="html"><![CDATA[【转】修复8110的按键速度]]></title>
-        <id>https://qqfloatingice.github.io/post/zhuan-xiu-fu-8110-de-an-jian-su-du/</id>
-        <link href="https://qqfloatingice.github.io/post/zhuan-xiu-fu-8110-de-an-jian-su-du/">
+        <title type="html"><![CDATA[【转载】【2020年7月】Nokia 8110 4G GerdaOS刷机教程]]></title>
+        <id>https://kaios.qqfloatingice.top/post/k18/</id>
+        <link href="https://kaios.qqfloatingice.top/post/k18/">
         </link>
-        <updated>2020-04-03T05:18:05.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="tags">tags:</h2>
-<p><strong>本教程来自Banana-Hackers论坛，由<em>Sylvain D</em>提供原教程，<em>Vivek</em>改进，KaiOSLab翻译。</strong></p>
-<p>8110的一个经典问题是打字速度太过诡异，这里是解决(缓解)这个问题的方法</p>
-<p>***注意***在做如下步骤前请root你的手机，软件<a href="https://www.heppy.wang/archives/47/">点此</a>，教程<a href="https://www.heppy.wang/archives/94/">点此</a>——来自清水博客</p>
-<p>1.从system获得键盘应用的复制</p>
-<pre><code>adb pull /system/b2g/webapps/keyboard.gaiamobile.org
+        <updated>2020-07-15T00:59:16.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="以下内容转载自insorasky">以下内容转载自<a href="https://www.sorasky.in/">inSoraSky</a></h2>
+<p>之前那个教程过于久远，于是决定重新编写新的教程。<br>
+考虑到之后上了大学以后就很少再玩KaiOS了，这可能将是我倒数第二篇关于KaiOS的文章。<br>
+最后一篇是关于KaiOS手机如何和谐上网。</p>
+<p>#1.导读<br>
+<a href="https://gerda.tech/">GerdaOS</a>是一个第三方kaiOS ROM，这个ROM支持截屏、文件管理、安装第三方软件、开发者选项、IMEI修改、TTL修改、LTE频段解锁等，并且加入了广告屏蔽等功能。<br>
+他们说：“Install what you want, not they.”意味着你可以最大限度地定制你的香蕉机，而不是受HMD，kaiOS甚至阿三的jio摆布。<br>
+目前这个系统处在alpha阶段，可能会有未知的风险。刷机有风险，操作需谨慎。请务必备份好您的所有数据。这会删除您的所有数据。这一操作将导致您失去来自HMD官方的OTA更新。本人不对本内容产生的问题承担任何责任。<br>
+#2.系统要求</p>
+<ul>
+<li>一部正品Nokia 8110 4G香蕉机。华强北勿扰。</li>
+<li>一台电脑。最好运行的是Mac或者Linux系统。</li>
+<li>手机固件需要先升级到V12以上。</li>
+<li>一张microSD卡。可用空间需至少5GB。<br>
+#3.下载所需文件：</li>
+<li><strong>v13recovery_gerdaos.img</strong> Recovery镜像文件，重命名为recovery.img并存放在存储卡根目录下。</li>
+<li><strong>adb工具包</strong> <a href="https://www.coolapk.com/feed/16691768?shareKey=ODAzYjU2ZmQxOWJlNWU3Mzk4MzI~&amp;shareUid=1998781&amp;shareFrom=com.coolapk.app_2.5">请移步此处获得安装教程。</a></li>
+<li><strong>Wallace</strong> 临时root工具。请<a href="https://www.heppy.wang/archives/94/">点此</a>下载并放在SD卡根目录。</li>
+<li><strong>Dumpall.zip</strong> 备份工具，存放在存储卡根目录下。</li>
+<li><strong>gerda-install-221edb8.zip</strong> GerdaOS刷机包。存放在存储卡根目录下。</li>
+<li><strong>驱动</strong> mac和linux及原版Win10无需安装驱动，<a href="https://www.jb51.net/softs/668696.html">Windows请参考这里</a>。</li>
+<li><strong>OneKeyOmniSD</strong> OmniSD一键安装器。<a href="https://www.heppy.wang/archives/94/">请点此下载。</a><br>
+所有文件已经以百度网盘分享链接的形式在文章末尾贴出。<br>
+#4.重置提权<br>
+请参考本站文章 https://www.heppy.wang/archives/94/ 。<br>
+#5.临时root</li>
+<li>打开刚刚安装的OmniSD，选择Wallace Toolbox安装包安装。</li>
+<li>安装完成后，启动Wallace Toolbox。</li>
+<li>按1进行临时root，完成后关闭Wallace Toolbox。</li>
+<li>如果使用Wallace Toolbox无法正常root，请尝试使用Wallace（不带后缀）。<br>
+#6.降级Recovery<br>
+此步骤执行之前，请确保recovery镜像已经存放在存储卡根目录下并重命名为recovery.img。<br>
+在终端/命令提示符中逐行复制：</li>
+</ul>
+<pre><code class="language-shell">adb shell
+busybox dd if=/dev/block/bootdevice/by-name/recovery of=/sdcard/recovery-backup.img bs=2048
+busybox dd if=/sdcard/recovery.img of=/dev/block/bootdevice/by-name/recovery
+mount -o remount,rw /system
+echo '#!/system/bin/sh' &gt; /system/bin/install-recovery.sh
+echo 'exit 0' &gt;&gt; /system/bin/install-recovery.sh
+chown root:root /system/bin/install-recovery.sh
+chmod 750 /system/bin/install-recovery.sh
+sync
+mount -o remount,ro /system
+exit
+reboot
 </code></pre>
-<p>​		<strong>注意！经过测试，win10或者其他不明原因，执行上面的命令后，adb文件夹下不会出现keyboard.gaiamobile.org文件夹，所以会导致之后的命令失败，可以按时间顺序筛选出pull下来的文件，将他们放在新建的keyboard.gaiamobile.org文件夹即可提示<a href="https://ufoalastor.github.io/QnL8BkKKv/">点此</a>来自——此店不售此书的博客。</strong></p>
-<p>2.打开application.zip   打开里面的/js/keypad.js（不要使用记事本，不需要解压）</p>
-<p>3.找到这一部分：</p>
-<pre><code class="language-js">Keypad.prototype.LONGPRESS_INTERVAL=1000;
-Keypad.prototype.IDLE_INTERVAL=1000;
-</code></pre>
-<p>（VSCode可以按Ctrl+F查找）</p>
-<p>改为：</p>
-<pre><code class="language-js">Keypad.prototype.LONGPRESS_INTERVAL=500;
-Keypad.prototype.IDLE_INTERVAL=400;
-</code></pre>
-<p>4.在ADB命令行中执行</p>
-<pre><code class="language-bash">adb push keyboard.gaiamobile.org /data/local/webapps
-</code></pre>
-<p>5.使用下面的命令获得***webapps.json***</p>
-<pre><code>adb pull /data/local/webapps/webapps.json
-</code></pre>
-<p>6.打开ADB文件夹下的webapps.json</p>
-<p>找到这一行：</p>
-<pre><code>&quot;basePath&quot;: &quot;/system/b2g/webapps&quot;,
-</code></pre>
-<p>改成：</p>
-<pre><code>&quot;basePath&quot;: &quot;/data/local/webapps&quot;,
-</code></pre>
-<p>7.在ADB中逐行运行：</p>
-<pre><code>adb push webapps.json /data/local/webapps/
-</code></pre>
-<pre><code>adb reboot
-</code></pre>
-<p>8.重启后按键问题就会得到缓解</p>
-<p><strong>5<sub>7步的作用：防止更改system而引起的翻车恢复不了，执行5</sub>7步后，所有的更改将会在出厂设置后恢复，之前执行过的可以不执行5~7步</strong></p>
-<p><em><strong>————转自QQ old ice 的<a href="https://www.kaioslab.xyz/">KaiOSlab</a></strong></em></p>
+<p>此时手机重启后正常进入系统，recovery降级完成。您可以重启至recovery（命令adb reboot recovery或者关机状态下同时按住Power+上键），如果首行显示“Gerda Recovery”即为安装成功。<br>
+#7.备份原有操作系统</p>
+<ul>
+<li>重启进入recovery（方法上面已经提到，这里不再赘述）</li>
+<li>选择Mount /system（上下键选择，返回键确认）</li>
+<li>选择Apply update from SD card</li>
+<li>选择dumpall.zip</li>
+<li>稍等一会</li>
+<li>在recovery重新弹出菜单后选择reboot system now重启至系统。<br>
+至此，你的当前系统已经备份到存储卡的DUMPS文件夹下。<br>
+#8.刷入刷机包</li>
+<li>重启进入recovery</li>
+<li>选择Mount /system</li>
+<li>选择Apply update from SD card</li>
+<li>选择gerda-install-702d409.zip</li>
+<li>稍等一会，等待recovery菜单重新弹出</li>
+<li>选择Wipe data/factory reset双清</li>
+<li>选Yes</li>
+<li>选择reboot system now重启至系统。<br>
+至此，如果开机界面变为一只Linux企鹅和GerdaOS图标，即为刷机成功。您可以体验您的新系统了。您可以通过自带的文件管理器安装第三方软件了。<br>
+#9.文件下载</li>
+<li>gerda-install-221edb8.zip 链接：https://pan.baidu.com/s/1wAE8IxtC63qQOujLVmFFWw 提取码：hcmu</li>
+<li>其他所需文件：https://www.lanzous.com/b623501/ 密码：2xra</li>
+</ul>
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[kaios百度翻译开发笔记]]></title>
-        <id>https://qqfloatingice.github.io/post/kaios-bai-du-fan-yi-kai-fa-bi-ji/</id>
-        <link href="https://qqfloatingice.github.io/post/kaios-bai-du-fan-yi-kai-fa-bi-ji/">
+        <title type="html"><![CDATA[【转载】【清水博客汉化】OmniSD]]></title>
+        <id>https://kaios.qqfloatingice.top/post/k17/</id>
+        <link href="https://kaios.qqfloatingice.top/post/k17/">
         </link>
-        <updated>2020-04-03T01:17:42.000Z</updated>
-        <content type="html"><![CDATA[<p>有于本人英语特别渣，所以特别需要一个翻译来解决问题，又因为最近的网课可以摸鱼，所以在kaios开发了给简陋的翻译0.0.1（目前更新一直鸽着）。。。。</p>
-<p>所以有人看到这个贴子的话（我知道这个小破站基本没人来。。。）请把它进行改进</p>
-<p>首先，请申请百度翻译API   得到key和ID这个也有用</p>
-<p>然后就构建html文件，要求可视化的可用DW（详见友情链接中的神奇的软件站）不要求的随便</p>
-<p>这里给个参考代码</p>
-<pre><code>&lt;!doctype html&gt;  
-&lt;html lang=&quot;en&quot;&gt;  
-&lt;head&gt;  
-    &lt;meta charset=&quot;UTF-8&quot;&gt;  
-    &lt;title&gt;Translate&lt;/title&gt;  
-&lt;/head&gt;  
-&lt;body&gt;  
-&lt;div id=&quot;SRC&quot;&gt;  
-&lt;textarea id=&quot;srcText&quot; name=&quot;srcText &quot; style=&quot;width:500px; height:120px;&quot;&gt;  
-&lt;/textarea&gt;  
-  
-&lt;button id=&quot;Click&quot; name=&quot;Click&quot;&gt;Translate&lt;/button&gt;  
-&lt;/div&gt;  
-  
-&lt;br /&gt;   
-&lt;hr /&gt;  
-&lt;div id=&quot;DST&quot;&gt;  
-&lt;textarea id=&quot;dstText&quot; name=&quot;dstText&quot; style=&quot;width:500px; height:120px;&quot;&gt;  
-&lt;/textarea&gt;  
-&lt;/div&gt;  
-  
-  
-&lt;/body&gt;  
-&lt;script src=&quot;jquery-1.8.2.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;  
-&lt;script type=&quot;text/javascript&quot;&gt;  
-   
-$(&quot;#Click&quot;).click(function (){  
-  
-var contents = $(&quot;#srcText&quot;).val() ;  
-alert(  contents) ;  
-  
-  
-$.ajax({  
-       type:&quot;get&quot;,  
-       async:false,                                                 //must be synchronized  
-       url:&quot;http://openapi.baidu.com/public/2.0/bmt/translate&quot;,  
-       dataType:&quot;jsonp&quot;,  
-       data: {  
-           from: &quot;翻译的源语言&quot;,                                              //language choose  
-           to: &quot;翻译成的语言&quot;,  
-           client_id:  这个地方输入你自己在百度开源申请的API 的 KEY,                  //baidu api key  
-           q: contents  
-       },     
-       success:function(json , status){  
-           
-            //alert(&quot;here is the status :&quot;+status) ;  
-            $(&quot;#dstText&quot;).empty() ;  
-  
-            for ( var i = 0 ; i &lt; json.trans_result.length ; i++ )  
-            {  
-            $(&quot;#dstText&quot;).append( json.trans_result[i].dst  +&quot; &lt;br /&gt;&quot;) ;  
-            }  
-        //  alert(json.trans_result[0].dst +&quot; &lt;br /&gt; &quot;+json.trans_result[0].src) ;  
-           
-      },  
-      error:function(){  
-          alert('Fail to translate with baidu API!');  
-      }  
-});  
-}) ;  
-  
-&lt;/script&gt;  
-&lt;/html&gt;  
-	
-	
-
+        <updated>2020-07-15T00:57:57.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="以下内容转载自insorasky">以下内容转载自<a href="https://www.sorasky.in/">inSoraSky</a></h2>
+<p>本版本由清水博客汉化。感谢原作者Luxferre。请通过<a href="http://www.heppy.wang/archives/13/">此教程</a>安装。<br>
+适用于WebIDE： https://www.lanzous.com/i4mylmd<br>
+<img src="http://www.heppy.wang/usr/uploads/2020/01/1079158768.png" alt="2019-05-14-16-46-05.png" loading="lazy"><br>
+<img src="http://www.heppy.wang/usr/uploads/2020/01/76336635.png" alt="2019-05-14-16-46-13.png" loading="lazy"><br>
+<img src="http://www.heppy.wang/usr/uploads/2020/01/2690983387.png" alt="2019-05-14-16-46-19.png" loading="lazy"></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[【转载】【清水博客汉化】reader by wolfff78]]></title>
+        <id>https://kaios.qqfloatingice.top/post/k16/</id>
+        <link href="https://kaios.qqfloatingice.top/post/k16/">
+        </link>
+        <updated>2020-07-15T00:56:38.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="以下内容转载自insorasky">以下内容转载自<a href="https://www.sorasky.in/">inSoraSky</a></h2>
+<p>本版本由清水博客汉化。感谢原作者wolfff78。请通过OmniSD/GerdaPkg/WebIDE安装。</p>
+<p><img src="http://www.heppy.wang/usr/uploads/2020/02/3149313287.png" alt="537C898A-F612-4988-9A94-0E3392B421F5.png" loading="lazy"><br>
+<img src="http://www.heppy.wang/usr/uploads/2020/02/3412573808.png" alt="6FB75722-1BE3-4103-BD7F-47909000A8BC.png" loading="lazy"><br>
+<img src="http://www.heppy.wang/usr/uploads/2020/02/3058965130.png" alt="CA155846-7F8A-4B97-BFEF-4C41FB3DB6E6.png" loading="lazy"><br>
+<img src="http://www.heppy.wang/usr/uploads/2020/02/2394935712.png" alt="B73A0331-778E-43D0-9B43-43DA0258522E.png" loading="lazy"></p>
+<p>下载地址：https://www.lanzous.com/i46lcwf</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[【转载】【清水博客汉化】Wallace Toolbox——折腾kaiOS手机的全能APP]]></title>
+        <id>https://kaios.qqfloatingice.top/post/k15/</id>
+        <link href="https://kaios.qqfloatingice.top/post/k15/">
+        </link>
+        <updated>2020-07-15T00:54:58.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="以下内容转载自insorasky">以下内容转载自<a href="https://www.sorasky.in/">inSoraSky</a></h2>
+<p>Wallace Toolbox 是由Luxferre大神制作的Wallace的后继者，除了Wallace所具备的一键root的功能外，还加入了一些对折腾kaiOS手机相当实用的功能。实在太好使了，博主特地汉化了分享给大家。<br>
+<img src="http://www.heppy.wang/usr/uploads/2020/01/3952265623.png" alt="unnamed.png" loading="lazy"><br>
+功能如下：</p>
+<ul>
+<li>临时root(Wallace)</li>
+<li>通话录音设置</li>
+<li>安装app(OmniSD)</li>
+<li>设置TTL</li>
+<li>修改IMEI</li>
+<li>代理设置</li>
+<li>修改浏览器UA</li>
+<li>重置提权(OmniSD)<br>
+一个app，替代OmniSD和Wallace！<br>
+下载地址：https://www.lanzous.com/b05417mmh  密码:5vks</li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[【转载】【软件分享】KaiBoy汉化版]]></title>
+        <id>https://kaios.qqfloatingice.top/post/k14/</id>
+        <link href="https://kaios.qqfloatingice.top/post/k14/">
+        </link>
+        <updated>2020-07-15T00:54:00.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="以下内容转载自insorasky">以下内容转载自<a href="https://www.sorasky.in/">inSoraSky</a></h2>
+<p>本软件由【QQ老冰】倾情汉化并提供。</p>
+<p>Game Boy（简称GB，日语：ゲームボーイ）是任天堂公司在1989年发售的第一代便携式游戏机。<br>
+Kaiboy是Game Boy的模拟器，游戏ROM需要下载。<br>
+推荐游戏下载网站：https://www.oldmanemu.net/%e6%8e%8c%e6%9c%ba%e6%b8%b8%e6%88%8f/gb-gbc<br>
+下载后将解压后的  .gb.gbc文件复制到手机的任意位置即可。<br>
+独创的Game Boy内核是由penserbjorne提供的；<br>
+Luxferre将其移植到KaiOS；<br>
+QQ老冰将其汉化。<br>
+附：GameBoy硬件参数：</p>
+<ul>
+<li>制造厂商：Nintendo</li>
+<li>发售时间：1989年4月21日</li>
+<li>中央处理器：Z80--改进型CPU；8Bit；4.19 MHz</li>
+<li>内部储存器： 8 KB Byte RAM</li>
+<li>游戏卡带容量： 256 KB，512 KB，1 MB，2 MB，4 MB，8 MB，16 MB</li>
+<li>声音处理器： 立体四声道</li>
+<li>图像处理器：反射式点阵液晶屏幕；2.6英寸；最大分辨率：160×144（像素）</li>
+<li>电源： 四节AA型电池；外接交流电源</li>
+<li>电池使用时间： 三十五小时</li>
+<li>GameBoy部分大作：Pokemon系列；塞尔达传说：织梦岛、大地之章、时空之章；勇者斗恶龙系列；洛克人系列；游戏王系列；牧场物语系列；最终幻想系列等3002个游戏</li>
+</ul>
+<p>下载地址：https://www.lanzous.com/i9gixqh<br>
+安装时请使用<a href="http://www.heppy.wang/archives/13/">OmniSD</a>。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[【转载】【转载】把掰直的香蕉掰回去——8110恢复原厂系统教程]]></title>
+        <id>https://kaios.qqfloatingice.top/post/k13/</id>
+        <link href="https://kaios.qqfloatingice.top/post/k13/">
+        </link>
+        <updated>2020-07-15T00:52:58.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="以下内容转载自insorasky">以下内容转载自<a href="https://www.sorasky.in/">inSoraSky</a></h2>
+<p>本教程由交流群内的 @QQ老冰 提供。清水博客和博主不为此承担任何责任。</p>
+<p>所需文件(系统镜像因蓝奏云限制请到群文件中下载 其他文件下载地址：https://www.lanzous.com/b05419rre 密码:hse1)：</p>
+<ul>
+<li>系统镜像（system.img）</li>
+<li>4bash.zip（用QQ老冰上传的那个）</li>
+<li>bash4zip.sh（用QQ老冰上传的那个）</li>
+<li>dumps文件夹（当时安装gerdaOS时备份的文件，在SD卡根目录下）<br>
+教程开始：<br>
+1.将4bash.zip和bash4zip.sh放在SD卡根目录下。<br>
+2.在SD卡根目录下新建new-dumps文件夹<br>
+3.在new-dumps文件夹中放入以下文件：</li>
+<li>abroot.img</li>
+<li>abrootbak.img</li>
+<li>boot.img</li>
+<li>fsg.img</li>
+<li>modem.img</li>
+<li>rpm.img</li>
+<li>rpmbak.img</li>
+<li>sbl1.img</li>
+<li>sbl1bak.img</li>
+<li>splash.img</li>
+<li>tz.img</li>
+<li>tzbak.img<br>
+（上述文件都要从dumps文件夹里复制）<br>
+4.从群中下载对应版本的system.img（目前系统是什么版本就下什么版本，Gerda下载V13）并重命名为system.img，放在new-dumps文件夹里<br>
+5.重启至recovery（关机后按电源键+上键）<br>
+6.mount /system<br>
+7.apply update from SDcard<br>
+8.4bash.zip<br>
+9.坐和放宽（等待）<br>
+10.reboot system now<br>
+系统恢复完成，可以通过OTA获取更新了。（然后你就会用回GerdaOS【真香.png】）<br>
+此方法作者是：Purishnit<br>
+感谢：@钾肥猫提供的原厂recovery和@穷途提供的动力（要不然我早就去用GerdaOS了{二次真香}）</li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[【转载】8110 V16系统root方法]]></title>
+        <id>https://kaios.qqfloatingice.top/post/k12/</id>
+        <link href="https://kaios.qqfloatingice.top/post/k12/">
+        </link>
+        <updated>2020-07-15T00:51:37.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="以下内容转载自insorasky">以下内容转载自<a href="https://www.sorasky.in/">inSoraSky</a></h2>
+<p>#此章节所提供的教程已经过时，仅作存档，最新教程请<a href="http://www.heppy.wang/archives/45/">点此</a>。<br>
+#方法一（推荐）<br>
+adbroot.zip： https://www.lanzous.com/i4njehc</p>
+<ul>
+<li>1.通过此方法安装OmniSD；</li>
+<li>2.通过OmniSD安装adbroot.zip，然后启动adbroot，启用临时root；</li>
+<li>3.现在可以直接通过adb shell操作root了。<br>
+#方法二<br>
+telnetd.zip：https://www.lanzous.com/i46lb3a</li>
+<li>1.通过此方法安装OmniSD；</li>
+<li>2.通过OmniSD安装telnetd.zip，然后进入telnetd，启动telnet服务器；</li>
+<li>3.在adb工具包目录下逐行运行：</li>
+</ul>
+<pre><code>adb shell
+busybox telnet localhost
 </code></pre>
+<ul>
+<li>4.完成获取临时root权限。</li>
+</ul>
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[让老旧平板焕发新生]]></title>
-        <id>https://qqfloatingice.github.io/post/rang-lao-jiu-ping-ban-huan-fa-xin-sheng/</id>
-        <link href="https://qqfloatingice.github.io/post/rang-lao-jiu-ping-ban-huan-fa-xin-sheng/">
+        <title type="html"><![CDATA[【转载】8110恢复官方系统]]></title>
+        <id>https://kaios.qqfloatingice.top/post/k11/</id>
+        <link href="https://kaios.qqfloatingice.top/post/k11/">
         </link>
-        <updated>2020-04-02T14:49:09.000Z</updated>
-        <content type="html"><![CDATA[<p>由于本人苦逼经常更换住址，所以发现原先的第二显示屏不便于携带使用。</p>
-<figure data-type="image" tabindex="1"><img src="http://tiebapic.baidu.com/forum/w%3D580/sign=f614fc465e540923aa696376a259d1dc/515a03087bf40ad1197cc586402c11dfa8ecced8.jpg" alt="" loading="lazy"></figure>
-<p>所以迫切的需要一台便携的第二屏配合虚拟机使用，然而又因为快递还没恢复，于是我便把邪恶的目光看向了久经沙场的ipad4，我目前的方案是，在虚拟机上安装某远控软件现在成品是这样的。</p>
-<figure data-type="image" tabindex="2"><img src="http://tiebapic.baidu.com/forum/w%3D580/sign=71d98df4da11728b302d8c2af8fdc3b3/3042f7246b600c33279ddcad0d4c510fd8f9a194.jpg" alt="" loading="lazy"></figure>
-<p>p.s.E490是真的弱鸡，虚拟机只能带一个</p>
-<p>随着一段时间的使用，目前我的体验是这样的，最好配合鼠标，键盘使用。虽然可以触控但是体验不是很好，并且建议轻度使用。要生产力的话，强烈推荐键盘鼠标。</p>
+        <updated>2020-07-15T00:50:20.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="以下内容转载自insorasky">以下内容转载自<a href="https://www.sorasky.in/">inSoraSky</a></h2>
+<p>系统镜像： https://pan.baidu.com/s/1Nn8AJiAWq_o_MRrff7X25A 96u2（如果自己有备份，也可使用备份的文件，用户数据为userdata.img）<br>
+所需其他文件： https://www.lanzous.com/b623501/ 密码:2xra<br>
+#一、仅恢复系统（不会恢复开机画面和recovery）<br>
+<strong>如果需要OTA更新，请【完全恢复】。</strong></p>
+<ul>
+<li>1.下载 RestoreSystem_signed.zip 和所需版本镜像的system.img；</li>
+<li>2.将两个文件放在SD卡根目录下；</li>
+<li>3.重启至recovery；</li>
+<li>4.Mount /system；</li>
+<li>5.Apply update from SDcard；</li>
+<li>6.选择 RestoreSystem_signed.zip；</li>
+<li>7.重启。</li>
+<li>8.如果需要V13，请刷完后在recovery中按照上述步骤安装 update_XX_13.zip。<br>
+#二、完全恢复</li>
+<li>1.下载 4bash.zip 和 bash4zip.sh以及所需版本镜像；</li>
+<li>2.将4bash.zip和bash4zip.sh放在SD卡根目录下，镜像放在SD卡/dumps目录下（没有的话请先新建）；</li>
+<li>3.编辑bash4zip.sh（不要使用记事本），逐行根据文件名（区分大小写）添加以下代码：<br>
+/tmp/busybox dd if=/sdcard/dumps/文件名.img of=/dev/block/bootdevice/by-name/文件名</li>
+<li>4.重启至Recovery；</li>
+<li>5.Mount /system；</li>
+<li>6.Apply update from SDcard；</li>
+<li>7.选择4bash.zip；</li>
+<li>8.重启。</li>
+</ul>
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[首次实现硬核无损改装笔记本支持服务器U.2硬盘]]></title>
-        <id>https://qqfloatingice.github.io/post/shou-ci-shi-xian-ying-he-wu-sun-gai-zhuang-bi-ji-ben-zhi-chi-fu-wu-qi-u2-ying-pan/</id>
-        <link href="https://qqfloatingice.github.io/post/shou-ci-shi-xian-ying-he-wu-sun-gai-zhuang-bi-ji-ben-zhi-chi-fu-wu-qi-u2-ying-pan/">
+        <title type="html"><![CDATA[【转载】kaiOS相关的网站推荐]]></title>
+        <id>https://kaios.qqfloatingice.top/post/k10/</id>
+        <link href="https://kaios.qqfloatingice.top/post/k10/">
         </link>
-        <updated>2020-04-02T06:38:15.000Z</updated>
-        <content type="html"><![CDATA[<p>蓝天P570WM移动工作站准系统笔记本，X79芯片组，12核心处理器，双显卡槽，4个SATA接口，说出来你可能不信，我要改装笔记本支持U.2服务器硬盘!没错，手上拿的是800GB的intel P3600硬盘，说性能吗，mlc万年传家宝有多耐草自然不用说，哪怕是洋垃圾写了几百TB也不怕，性能上intel同容量mlc固态读写速度自然比不上3550/1800MB每秒的三星960pro，但是价格摆在那，服务器盘量大便宜，以后还有垃圾捡，等以后淘汰了上个Oracle的6.4TB固态，有多爽就不用说了，既然m2接口可以转换u2接口，在现在普及m2的时代，上服务器硬盘也不是不可能，好了，动工。<br>
-<img src="http://tiebapic.baidu.com/forum/w%3D580/sign=eb6427afa5fb43161a1f7a7210a44642/7e3e94cad1c8a7861f1e0d6a7009c93d70cf50bb.jpg" alt="" loading="lazy"></p>
-<p>当时实现M2的图</p>
-<p>神机配置<img src="http://tiebapic.baidu.com/forum/pic/item/91a164380cd79123d94a0b0eba345982b3b780c7.jpg" alt="" loading="lazy"></p>
-<p>开始，大家可能见过笔记本用台式机CPU，或者台式机级别的mxm独立显卡，但是，在nvme固态硬盘流行的今天，我想可以做点什么，手里有个p570wm笔记本，硬盘仓很大，可以放下15mm机械盘，我想既然能放15mm，那么，是否可以考虑一下把排线改造，增加nvme通道，和SATA接口整合到一起变成SFF－8639接口，然后上服务器U.2硬盘呢？说干就干，一看这个笔记本的结构，觉得可行，于是就动工了</p>
-<p>给大家普及一下什么是U.2接口，所谓U.2就是SATA接口的基础上，增加了SAS服务器硬盘的电路，以及Nvme固态硬盘的线路，一个U.2接口可以支持任何协议的硬盘</p>
-<p>说一下这台机器的来历，其实这台笔记本，你们当年应该有所耳闻，上过新闻的，还记得当年2014年京东21万的笔记本吗？没错！21万元!就是那台未来人类P57笔记本，实际上就是蓝天准系统P570WM模具贴个牌高价卖而已，当年2014年的配置达到了6核I7 4960X+两张gtx680sli的顶级配置，这笔记本说真的很BT，硬盘可以塞三个，还有一个光驱!现在2020年了，才开始普及6核心的笔记本，以前都是四核封顶，牙膏厂万年坑，唯独P570WM这台传奇机皇可以傲视群雄，放到现在，依然可以和蓝天P870TM笔记本相提并论，现在有很多淘汰的E5 2600处理器，很便宜性能也很强，P570WM上个E5 2697V2的12核心CPU，性能依然可以秒杀默认的9900k，而且CPU是四通道内存，就算是四根1600，性能也比双通道ddr4－3200强，服务器级别的配置，做到笔记本上，也是蓝天机皇的绝唱了，这台本子全球限量300台，十分稀有，然而，最大的短板就是，没有nvme固态硬盘，但是有多的显卡槽，在显卡性能强大的今天，我已经用不到双卡了，那么是否可以副卡位转接nvme呢？于是，开始了我的研究</p>
-<p>成品上图<br>
-<img src="http://tiebapic.baidu.com/forum/w%3D580/sign=8324344f22fae6cd0cb4ab693fb30f9e/a0d3b3119313b07ede8f85701bd7912397dd8cbd.jpg" alt="" loading="lazy"><br>
-p.s.本人不想折腾图床，暂时用贴吧如有水印请勿奇怪。。。</p>
+        <updated>2020-07-15T00:47:37.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="以下内容转载自insorasky">以下内容转载自<a href="https://www.sorasky.in/">inSoraSky</a></h2>
+<p>独乐乐不如众乐乐，这些网站上有从1995年就对8110情有独钟的情怀大佬，也有各种想让自己的JioPhone手机原地起飞的印度阿三。以下是相关推荐。这些网站大多数需要梯子。<br>
+###1.kaiOS官网： https://www.kaiostech.com/<br>
+这个想必不用我多说。<br>
+<img src="http://www.heppy.wang/usr/uploads/2020/01/4213223663.png" alt="image-688x333.png" loading="lazy"><br>
+2.kaiOS 开发者支持网站： https://developer.kaiostech.com/<br>
+该网站提供了部分kaiOS开发时使用的API的教程。其中绝大多数继承自FireFox OS。<br>
+<img src="http://www.heppy.wang/usr/uploads/2020/01/3593334618.png" alt="image-688x333.png" loading="lazy"><br>
+3.Mozilla开发者知识库(MDN)的关于FireFox OS的内容： https://developer.mozilla.org/zh-CN/docs/Archive/B2G_OS/Platform<br>
+不得不说FireFox OS的没落挺可惜的，Mozilla官方将此页面标注为“过时内容的存档”，实际上该知识库对FireFox OS所使用的API讲解相当完善。美中不足的是简体中文翻译不完全。<br>
+<img src="http://www.heppy.wang/usr/uploads/2020/01/1549760247.png" alt="image-2-688x334.png" loading="lazy"><br>
+4.Google Groups上的BananaHackers论坛https://groups.google.com/forum/#!forum/bananahackers<br>
+该论坛围绕8110 4G以及各种kaiOS设备展开。可以在这里了解kaiOS破解的最新信息。<br>
+<img src="http://www.heppy.wang/usr/uploads/2020/01/2579662192.png" alt="image-4-688x332.png" loading="lazy"><br>
+5.Google Sites上的BananaHackers官网https://sites.google.com/view/bananahackers/home<br>
+这里是BananaHackers成果精华的集中区。本站许多教程均源于此站。一些本站没翻译的教程也可在此找到。<br>
+<img src="http://www.heppy.wang/usr/uploads/2020/01/856000271.png" alt="image-688x333.png" loading="lazy"><br>
+6.Google Sites上的B-Hackers商店 https://sites.google.com/view/b-hackers-store/home<br>
+此商店集中了BananaHackers论坛上的APP。<br>
+<img src="http://www.heppy.wang/usr/uploads/2020/01/2260322136.png" alt="image-688x333.png" loading="lazy"><br>
+7.GerdaOS官网 https://gerda.tech/<br>
+在此了解GerdaOS的详细信息。官网放出的刷机包可能会比GayLab上的最新版本要旧。想玩最新版本的可以装个Cygwin或直接用Linux编译。<br>
+<img src="http://www.heppy.wang/usr/uploads/2020/01/1657635038.png" alt="image-7-688x323.png" loading="lazy"><br>
+8.r/KaiOS https://www.reddit.com/r/KaiOS/<br>
+kaiOS相关Rabbit板块。<br>
+<img src="http://www.heppy.wang/usr/uploads/2020/01/1958150164.png" alt="image-8-688x333.png" loading="lazy"><br>
+9.Nokia Community https://community.phones.nokia.com/<br>
+来自诺基亚的关于8110问题的官方解决方案。<br>
+<img src="http://www.heppy.wang/usr/uploads/2020/01/913466407.png" alt="image-688x333.png" loading="lazy"><br>
+10.清水博客 http://www.heppy.wang/<br>
+没错，我就是这么的厚颜无耻~<br>
+<img src="http://www.heppy.wang/usr/uploads/2020/01/178902776.png" alt="image-10-688x332.png" loading="lazy"></p>
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[二奶机 thinkpad E490的简要测评]]></title>
-        <id>https://qqfloatingice.github.io/post/er-nai-ji-thinkpad-e490-de-jian-yao-ce-ping/</id>
-        <link href="https://qqfloatingice.github.io/post/er-nai-ji-thinkpad-e490-de-jian-yao-ce-ping/">
+        <title type="html"><![CDATA[【转载】Nokia 8110 4G 拨号盘神秘代码]]></title>
+        <id>https://kaios.qqfloatingice.top/post/k9/</id>
+        <link href="https://kaios.qqfloatingice.top/post/k9/">
         </link>
-        <updated>2019-11-20T07:27:29.000Z</updated>
-        <content type="html"><![CDATA[<p>由于蓝天P570WM过于笨重，再加上功耗和续航还有巨大的电源适配器，基本上就是台式机的命，再加上原先的ideapadU410的性能和续航问题，我决定重新买一台二奶。</p>
-<p>在TP专卖店JS的吹捧下，在加上我还有一台17年的X1翻转本，我买下了E490。</p>
-<p>关于外观，我就不多说了。虽然这一代的E系列虽然好了很多，但是还是有一些槽点的，我就不一一吐槽了。</p>
-<p>后来，我在使用的过程中我发现联想对该机的调教过于保守，使性能不能完全发挥，于是乎就下了Intel(R) Extreme Tuning Utility去掉了功耗墙，又通过降电压，跑满睿频,使CPU-Z的跑分上了2000，超过I5 7600！<br>
-<img src="https://imgsa.baidu.com/forum/w%3D580/sign=28a0e96d3afae6cd0cb4ab693fb20f9e/722309f790529822cd853199d8ca7bcb0a46d432.jpg" alt="" loading="lazy"><br>
-显卡方面，对于没有什么游戏需求的我，RX552海星，（据说有人拿它吃过鸡）。。。</p>
-<p>键盘方面，比我蓝天的键盘好多了，但是没有X1舒服（玄学问题）。。。个人觉得比机械打字舒服。。。</p>
-<p>屏幕。。。。。。。最大的槽点。。。。不说了</p>
-<p>总之，作为一台备用的二奶E490够了（至少性能比2017X1)强。。。。但是画图还是要X1.。。。</p>
+        <updated>2020-07-15T00:46:45.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>*#06# – 展示IMEI。
+*#0000# – 这个不用我多说了吧。
+*#0606# – 显示MEID。
+*#*#33284#*#* (*#*#debug#*#*) – 开发者模式。
+###2324# (###adbg#) – 启用/停用高通调试端口。
+*#8378269# (*#testbox#) or *#*#2637643#*#* (*#*#android#*#*) – 测试模式。
+*#*#372733#*#* (*#*#draped#*#*) or *#2886# (*#auto#) – KaiOS 测试模块。
+*#7223# (*#race#) – 内部系统版本。
+*#*#0574#*#* (*#*#0lri#*#*) – 日志管理器。
+*#573564# (*#jrdlog#) – T2M日志。
+*#091# – 启用来电自动应答。
+*#092# – 禁用来电自动应答。
+</code></pre>
+<p>感谢原作者Lexferre。清水博客翻译。<br>
+<img src="http://www.heppy.wang/usr/uploads/2020/01/1444445506.png" alt="2019-05-18-10-32-31.png" loading="lazy"></p>
 ]]></content>
     </entry>
 </feed>
